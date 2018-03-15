@@ -29,41 +29,79 @@
 	<body>
 		<div class="content">
 			<table align="center">
-			<tr>
-				<td>
-					Keyword:
-				</td>
-				<td>
-					<input type="text" placeholder="Asus Zenfone" id="query" value="Zenfone" class="form-control"/>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					Name:
-				</td>
-				<td>
-					<select id="nama" class="form-control"></select>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="3" style="text-align:center">
-					<input type="button" value="Ok" class="btn btn-danger" id="ok"/>
-				</td>
-			</tr>
+                <tr>
+                    <td>
+                        Brand:
+                    </td>
+                    <td>
+                        <select id="brand" class="form-control">
+                            <?php
+                            require_once 'lib/gsm.php';
+                            $gsm = new Gsm();
+                            $brands = $gsm->getBrands();
+                            if ($brands['data']) {
+                                foreach ($brands['data'] as $key => $brand) {
+                                    ?>
+                                        <option
+                                                value="<?php print($key) ?>"
+                                                data-name="<?php print $brand['title'] ?>"
+                                                data-href="<?php print $brand['href'] ?>">
+                                            <?php print $brand['title'] ?>
+                                        </option>
+                                    <?php
+                                }
+                            }
+                            ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Keyword:
+                    </td>
+                    <td>
+                        <input type="text" placeholder="Asus Zenfone" id="query" value="Zenfone" class="form-control"/>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        Name:
+                    </td>
+                    <td>
+                        <select id="nama" class="form-control"></select>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3" style="text-align:center">
+                        <input type="button" value="Ok" class="btn btn-danger" id="ok"/>
+                    </td>
+                </tr>
 			</table>
 			<div id='spek' align="center"></div>
-         	<p align="center"><a href="http://ibacor.com/widget" class="w" target="_BLANK">Widget by iBacor.com</a></p>
 		</div>
 		
 		<script type="text/javascript" src="//code.jquery.com/jquery-2.2.0.min.js"></script>
 		<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 			$(document).ready(function() {
-				var x = $('#query').val();
-				cari(x);
+			    var brand_id = $('#brand').val();
+			    brand_name = $('#brand option[value='+brand_id+']').attr('data-name');
+                $('#query').val(brand_name);
+				cari(brand_name);
 			});
+			$('#query').on('change', function () {
+                $('#nama').html('');
+                var x = $('#query').val();
+                cari(x);
+            });
+			$('#brand').on('change', function () {
+                var brand_id = $('#brand').val();
+                brand_name = $('#brand option[value='+brand_id+']').attr('data-name');
+                $('#query').val(brand_name);
+                cari(brand_name);
+            });
 
-			$('body').on('focus', '#query', function() {
+			/*$('body').on('focus', '#query', function() {
 				$(this).keydown(function() {
 					setTimeout(function() {
 						var d = $('#query').val(),
@@ -73,10 +111,10 @@
 						}
 					}, 50);
 				});
-			});
+			});*/
 				
 			$('body').on('click', '#ok', function() {
-				$("#spek").html('<img src="http://ibacor.com/bcr_asset/images/load.gif" alt="Process.."/>');
+				$("#spek").html('<img src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="Process.."/>');
 				var x = $('#nama').val();
 				if(x != 'not found'){
 					$.ajax({
