@@ -1,4 +1,4 @@
-# GSM-Arena-API
+# GSM Arena API (gsmarena.com)
 <p>PHP Class for grab data on gsm arena website and output Array or JSON using cURL and simple html dom.</p>
 <br>
 <h4>Usage:</h4>
