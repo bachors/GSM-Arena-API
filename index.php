@@ -76,7 +76,8 @@
         </tr>
         <tr>
             <td colspan="3" style="text-align:center">
-                <input type="button" value="Ok" class="btn btn-danger" id="ok"/>
+                <input type="button" value="Ok" class="btn btn-success" id="ok"/>
+                <input type="button" value="Export JSON" class="btn btn-info" id="export_json"/>
             </td>
         </tr>
     </table>
@@ -87,34 +88,45 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function () {
-        var brand_id = $('#brand').val();
-        brand_name = $('#brand option[value=' + brand_id + ']').attr('data-name');
+        let brand_id = $('#brand').val();
+        let brand_name = $('#brand option[value=' + brand_id + ']').attr('data-name');
         $('#query').val(brand_name);
         cari(brand_name);
     });
     $('#query').on('change', function () {
         $('#nama').html('');
-        var x = $('#query').val();
+        let x = $('#query').val();
         cari(x);
     });
     $('#brand').on('change', function () {
-        var brand_id = $('#brand').val();
-        brand_name = $('#brand option[value=' + brand_id + ']').attr('data-name');
+        let brand_id = $('#brand').val();
+        let brand_name = $('#brand option[value=' + brand_id + ']').attr('data-name');
         $('#query').val(brand_name);
         cari(brand_name);
     });
 
-    /*$('body').on('focus', '#query', function() {
-        $(this).keydown(function() {
-            setTimeout(function() {
-                var d = $('#query').val(),
-                    jum = d.length;
-                if (jum > 2) {
-                    cari(d);
-                }
-            }, 50);
-        });
-    });*/
+    $('body').on('click', '#export_json', function () {
+        let x = $('#nama').val();
+        if (x !== 'not found') {
+            fetch('api/?slug=' + x)
+                .then(resp => resp.blob())
+                .then(blob => {
+                    const url = window.URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.style.display = 'none';
+                    a.href = url;
+                    // the filename you want
+                    a.download = x + '.json';
+                    document.body.appendChild(a);
+                    a.click();
+                    window.URL.revokeObjectURL(url);
+                })
+                .catch(() => alert('oh no!'));
+        } else {
+            $('#spek').html('Not Found.');
+        }
+        return false;
+    });
 
     $('body').on('click', '#ok', function () {
         $("#spek").html('<img src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="Process.."/>');
@@ -162,8 +174,8 @@
             crossDomain: true,
             dataType: 'json'
         }).done(function (b) {
-            var c = '';
-            if (b.status != 'error') {
+            let c = '';
+            if (b.status !== 'error') {
                 $.each(b.data, function (i, a) {
                     c += '<option value="' + b.data[i].slug + '">' + b.data[i].title + '</option>';
                 });
