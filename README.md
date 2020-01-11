@@ -33,4 +33,3 @@ $gsm = new gsm();</pre>
 <pre>// Convert ARRAY to JSON<br>
 header('Content-Type: application/json');<br>
 echo json_encode($data, JSON_PRETTY_PRINT);</pre>
-<a href="http://ibacor.com/widget/smartphone-spesifikasi"><h2>DEMO</h2></a>
