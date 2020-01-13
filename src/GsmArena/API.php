@@ -1,9 +1,11 @@
 <?php
 
+namespace FulgerX2007\GsmArena;
+
 /**
  * Class GsmArena
  */
-class GsmArena
+class API
 {
     public $base_url = 'https://www.gsmarena.com/';
     private $simbol = ['&', '+'];
@@ -11,7 +13,7 @@ class GsmArena
 
     public function __construct()
     {
-        require 'simple_html_dom.php';
+        require 'SimpleHtmlDom.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);

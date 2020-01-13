@@ -1,7 +1,10 @@
 {
   "description": "GsmArena API",
   "name": "fulgerx2007/gsmarena-api",
-  "keywords": ["package", "composer"],
+  "keywords": [
+    "package",
+    "composer"
+  ],
   "homepage": "https://packagist.org/",
   "type": "project",
   "license": "MIT",
@@ -17,5 +20,10 @@
   },
   "require": {
     "php": ">=7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "FulgerX2007\\": "/src/"
+    }
   }
 }

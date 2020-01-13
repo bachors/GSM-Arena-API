@@ -1,7 +1,12 @@
 <?php
 
-require_once 'lib/gsm.php';
-$gsm = new GsmArena();
+ini_set('display_errors', 1);
+
+use FulgerX2007\GsmArena\API;
+
+require_once dirname(__DIR__) . '/vendor/autoload.php';
+
+$gsm = new API();
 ?>
 <!DOCTYPE html>
 <html lang="en-US">

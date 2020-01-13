@@ -1,8 +1,10 @@
 <?php
 
+use FulgerX2007\GsmArena\API;
+
 require '../lib/gsm.php';
 
-$gsm = new GsmArena();
+$gsm = new API();
 
 if (!empty($_GET['query'])) {
     $data = $gsm->search($_GET['query']);
