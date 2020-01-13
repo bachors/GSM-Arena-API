@@ -1,3 +1,8 @@
+<?php
+
+require_once 'lib/gsm.php';
+$gsm = new Gsm();
+?>
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
@@ -39,8 +44,6 @@
             <td>
                 <select id="brand" class="form-control">
                     <?php
-                    require_once 'lib/gsm.php';
-                    $gsm = new Gsm();
                     $brands = $gsm->getBrands();
                     if ($brands['data']) {
                         foreach ($brands['data'] as $key => $brand) {
@@ -78,6 +81,7 @@
             <td colspan="3" style="text-align:center">
                 <input type="button" value="Ok" class="btn btn-success" id="ok"/>
                 <input type="button" value="Export JSON" class="btn btn-info" id="export_json"/>
+                <a type="button" class="btn btn-warning" id="export_devices_list"/>Export Devices List</a>
             </td>
         </tr>
     </table>
@@ -166,6 +170,20 @@
             $('#spek').html('Not Found.');
         }
         return false;
+    });
+
+    $('body').on('click', '#export_devices_list', function () {
+        let brand_title = $('#brand :selected').text().trim();
+        $("#spek").html('<img src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/0.16.1/images/loader-large.gif" alt="Process.."/>');
+        let informations = '';
+        let anchor = document.querySelector('a');
+        $("#nama option").each(function () {
+            informations += $(this).text() + "\n";
+        });
+        console.log(informations);
+        anchor.href = 'data:text/plain;charset=utf-8,' + encodeURIComponent(informations);
+        anchor.download = brand_title + '.txt';
+        $('#spek').html('success');
     });
 
     function cari(d) {
