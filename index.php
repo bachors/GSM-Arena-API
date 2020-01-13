@@ -1,7 +1,7 @@
 <?php
 
 require_once 'lib/gsm.php';
-$gsm = new Gsm();
+$gsm = new GsmArena();
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
@@ -9,7 +9,7 @@ $gsm = new Gsm();
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Widget Smartphone Spesifikasi - iBacor</title>
+    <title>Widget Smartphone Specification</title>
     <link type="text/css" rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
     <style>
         td {
@@ -81,7 +81,7 @@ $gsm = new Gsm();
             <td colspan="3" style="text-align:center">
                 <input type="button" value="Ok" class="btn btn-success" id="ok"/>
                 <input type="button" value="Export JSON" class="btn btn-info" id="export_json"/>
-                <a type="button" class="btn btn-warning" id="export_devices_list"/>Export Devices List</a>
+                <a href="#" type="button" class="btn btn-warning" id="export_devices_list"/>Export Devices List</a>
             </td>
         </tr>
     </table>

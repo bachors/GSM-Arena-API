@@ -1,10 +1,9 @@
 <?php
 
-require("../lib/gsm.php");
+require '../lib/gsm.php';
 
-// Create objek
-$gsm = new gsm();
-// Return ARRAY
+$gsm = new GsmArena();
+
 if (!empty($_GET['query'])) {
     $data = $gsm->search($_GET['query']);
 } elseif (!empty($_GET['slug'])) {
@@ -12,17 +11,10 @@ if (!empty($_GET['query'])) {
 } elseif (!empty($_GET['brands'])) {
     $data = $gsm->getBrands();
 } else {
-    $data = array(
-        "status" => "error"
-    );
+    $data = ['status' => 'error'];
 }
-// JSON
-header('Content-Type: application/json');
 
-// Tanda * berarti memberi hak akses kesemua host/domain untuk mengkonsusmi data JSON ini via AJAX.
-// Jika sobat hanya ingin domain sobat saja yang bisa mengkonsusmi data JSON ini via AJAX tinggal rubah seperti ini:
-// header('Access-Control-Allow-Origin: http://domain-sobat.com');
+header('Content-Type: application/json');
 header('Access-Control-Allow-Origin: *');
 
-// Convert ARRAY to JSON
-echo json_encode($data, JSON_PRETTY_PRINT);
+echo json_encode($data, JSON_PRETTY_PRINT, 512);
