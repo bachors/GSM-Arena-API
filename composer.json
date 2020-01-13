@@ -1,5 +1,6 @@
 {
   "description": "GsmArena API",
+  "name": "fulgerx2007/gsmarena-api",
   "keywords": ["package", "composer"],
   "homepage": "https://packagist.org/",
   "type": "project",
