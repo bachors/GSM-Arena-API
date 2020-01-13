@@ -8,12 +8,12 @@ namespace FulgerX2007\GsmArena;
 class API
 {
     public $base_url = 'https://www.gsmarena.com/';
-    private $simbol = ['&', '+'];
-    private $kata = ['_and_', '_plus_'];
+    public $simbol = ['&', '+'];
+    public $kata = ['_and_', '_plus_'];
 
     public function __construct()
     {
-        require 'SimpleHtmlDom.php';
+        require_once 'simple_html_dom.php';
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
@@ -54,6 +54,7 @@ class API
         } else {
             $html = str_get_html($ngecurl);
             $div = $html->find('div[class=st-text] table tbody', 0);
+
             if ($div->find('tr', 0)) {
                 $result['status'] = 'success';
                 foreach ($div->find('tr') as $tr) {
@@ -153,7 +154,7 @@ class API
      */
     public function search($q = ''): array
     {
-        $result = array();
+        $result = [];
         $brands = $this->getBrands();
         $nameArray = array_column($brands['data'], 'title');
         $nameArray = array_map('strtolower', $nameArray);

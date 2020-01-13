@@ -4,8 +4,7 @@ ini_set('display_errors', 1);
 
 use FulgerX2007\GsmArena\API;
 
-require_once dirname(__DIR__) . '/vendor/autoload.php';
-
+require_once dirname(__DIR__) . '/GsmArena/API.php';
 $gsm = new API();
 ?>
 <!DOCTYPE html>
@@ -117,7 +116,7 @@ $gsm = new API();
     $('body').on('click', '#export_json', function () {
         let x = $('#nama').val();
         if (x !== 'not found') {
-            fetch('api/?slug=' + x)
+            fetch('api.php?slug=' + x)
                 .then(resp => resp.blob())
                 .then(blob => {
                     const url = window.URL.createObjectURL(blob);
@@ -142,7 +141,7 @@ $gsm = new API();
         let x = $('#nama').val();
         if (x !== 'not found') {
             $.ajax({
-                url: 'api/?slug=' + x,
+                url: 'api.php?slug=' + x,
                 crossDomain: true,
                 dataType: 'json'
             }).done(function (b) {
@@ -193,7 +192,7 @@ $gsm = new API();
 
     function cari(d) {
         $.ajax({
-            url: 'api/?query=' + d,
+            url: 'api.php?query=' + d,
             crossDomain: true,
             dataType: 'json'
         }).done(function (b) {

@@ -1,8 +1,8 @@
 <?php
 
+require_once dirname(__DIR__) . '/GsmArena/API.php';
 use FulgerX2007\GsmArena\API;
 
-require '../lib/gsm.php';
 
 $gsm = new API();
 

@@ -23,7 +23,7 @@
   },
   "autoload": {
     "psr-4": {
-      "FulgerX2007\\": "/src/"
+      "FulgerX2007\\": ""
     }
   }
 }
