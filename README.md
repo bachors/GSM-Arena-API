@@ -4,11 +4,12 @@ PHP Class for grab data on [gsmarena.com](https://gsmarena.com/) website and out
 ### Usage:
  
 ```php
-// Include class gsm.php
-require 'gsm.php';
+
+use FulgerX2007\GsmArena\GsmArenaApi;
+require_once 'vendor/autoload.php';
 
 // Create object
-$gsm = new GsmArena();
+$gsm = new GsmArenaApi();
 ```
 ### Brands:
 
@@ -23,7 +24,7 @@ $data = $gsm->search('zenfone');
 
 ### Detail:
 ```php
-$data = $gsm->detail('asus_zenfone_max_zc550kl-7476'); // Slug
+$data = $gsm->getDeviceDetail('asus_zenfone_max_zc550kl-7476'); // Slug
 ```
 
 ### Return Array:

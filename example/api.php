@@ -1,15 +1,15 @@
 <?php
 
-require_once dirname(__DIR__) . '/GsmArena/API.php';
-use FulgerX2007\GsmArena\API;
+require_once dirname(__DIR__) . '/GsmArena/GsmArenaApi.php';
+use FulgerX2007\GsmArena\GsmArenaApi;
 
 
-$gsm = new API();
+$gsm = new GsmArenaApi();
 
 if (!empty($_GET['query'])) {
     $data = $gsm->search($_GET['query']);
 } elseif (!empty($_GET['slug'])) {
-    $data = $gsm->detail($_GET['slug']);
+    $data = $gsm->getDeviceDetail($_GET['slug']);
 } elseif (!empty($_GET['brands'])) {
     $data = $gsm->getBrands();
 } else {

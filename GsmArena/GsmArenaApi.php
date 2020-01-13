@@ -5,7 +5,7 @@ namespace FulgerX2007\GsmArena;
 /**
  * Class GsmArena
  */
-class API
+class GsmArenaApi
 {
     public $base_url = 'https://www.gsmarena.com/';
     public $simbol = ['&', '+'];
@@ -198,7 +198,7 @@ class API
      * @param string $slug
      * @return array
      */
-    public function detail($slug = ''): array
+    public function getDeviceDetail($slug = ''): array
     {
         $result = [];
 

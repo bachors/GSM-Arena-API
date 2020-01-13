@@ -2,10 +2,10 @@
 
 ini_set('display_errors', 1);
 
-use FulgerX2007\GsmArena\API;
+use FulgerX2007\GsmArena\GsmArenaApi;
 
-require_once dirname(__DIR__) . '/GsmArena/API.php';
-$gsm = new API();
+require_once dirname(__DIR__) . '/GsmArena/GsmArenaApi.php';
+$gsm = new GsmArenaApi();
 ?>
 <!DOCTYPE html>
 <html lang="en-US">
