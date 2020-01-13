@@ -1,35 +1,39 @@
 # GSM Arena API (gsmarena.com)
-<p>PHP Class for grab data on gsm arena website and output Array or JSON using cURL and simple html dom.</p>
-<br>
-<h4>Usage:</h4>
+PHP Class for grab data on [gsmarena.com](https://gsmarena.com/) website and output Array or JSON using cURL and simple html dom.
+
+### Usage:
  
-
-<pre>&lt;?php
-
+```php
 // Include class gsm.php
-require("gsm.php");
+require 'gsm.php';
 
-// Create objek
-$gsm = new gsm();</pre>
-<br>
+// Create object
+$gsm = new GsmArena();
+```
+### Brands:
 
-<h4>Brands:</h4>
-<pre>$data = $gsm-&gt;getBrands();</pre>
+```php
+$data = $gsm->getBrands();
+```
 
-<br>
-<h4>Search:</h4>
-<pre>$data = $gsm-&gt;search('zenfone'); // Keyword</pre>
+### Search:
+```php
+$data = $gsm->search('zenfone');
+```
 
-<br>
-<h4>Detail:</h4>
-<pre>$data = $gsm-&gt;detail('asus_zenfone_max_zc550kl-7476'); // Slug</pre>
+### Detail:
+```php
+$data = $gsm->detail('asus_zenfone_max_zc550kl-7476'); // Slug
+```
 
-<br>
-<h4>Return Array:</h4>
-<pre>print_r($data);<br></pre>
+### Return Array:
+```php
+print_r($data);
+```
 
- <br>
-<h4>Return JSON:</h4>
-<pre>// Convert ARRAY to JSON<br>
-header('Content-Type: application/json');<br>
-echo json_encode($data, JSON_PRETTY_PRINT);</pre>
+### Return JSON:
+```php
+// Convert ARRAY to JSON
+header('Content-Type: application/json');
+echo json_encode($data, JSON_PRETTY_PRINT);
+```
