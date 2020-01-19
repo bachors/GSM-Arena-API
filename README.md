@@ -1,37 +1,40 @@
-# GSM-Arena-API
-<p>PHP Class untuk grab data di website gsm arena dan output berbentuk Array atau JSON menggunakan cURL dan simple html dom.</p>
-<br>
-<h4>Usage:</h4>
+# GSM Arena API (gsmarena.com)
+PHP Class for grab data on [gsmarena.com](https://gsmarena.com/) website and output Array or JSON using cURL and simple html dom.
+
+### Usage:
  
+```php
 
-<pre>&lt;?php
+use FulgerX2007\GsmArena\GsmArenaApi;
+require_once 'vendor/autoload.php';
 
-// Include class gsm.php
-require("gsm.php");
+// Create object
+$gsm = new GsmArenaApi();
+```
+### Brands:
 
-// Create objek
-$gsm = new gsm();</pre>
- <br>
-<h4>Search:</h4>
- 
+```php
+$data = $gsm->getBrands();
+```
 
-<pre>$data = $gsm-&gt;search('zenfone'); // Keyword</pre>
- <br>
-<h4>Detail:</h4>
- 
+### Search:
+```php
+$data = $gsm->search('zenfone');
+```
 
-<pre>$data = $gsm-&gt;detail('asus_zenfone_max_zc550kl-7476'); // Slug</pre>
- <br>
-<h4>Return Array:</h4>
- 
+### Detail:
+```php
+$data = $gsm->getDeviceDetail('asus_zenfone_max_zc550kl-7476'); // Slug
+```
 
-<pre>print_r($data);<br>
-</pre>
- <br>
-<h4>Return JSON:</h4>
- 
+### Return Array:
+```php
+print_r($data);
+```
 
-<pre>// Convert ARRAY to JSON<br>
-header('Content-Type: application/json');<br>
-echo json_encode($data, JSON_PRETTY_PRINT);</pre>
- <a href="http://ibacor.com/widget/smartphone-spesifikasi"><h2>DEMO</h2></a>
+### Return JSON:
+```php
+// Convert ARRAY to JSON
+header('Content-Type: application/json');
+echo json_encode($data, JSON_PRETTY_PRINT);
+```
