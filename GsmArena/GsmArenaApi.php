@@ -53,7 +53,7 @@ class GsmArenaApi
             $result['data'] = [];
         } else {
             $html = str_get_html($ngecurl);
-            $div = $html->find('div[class=st-text] table tbody', 0);
+            $div = $html->find('div[class=st-text] table', 0);
 
             if ($div->find('tr', 0)) {
                 $result['status'] = 'success';
